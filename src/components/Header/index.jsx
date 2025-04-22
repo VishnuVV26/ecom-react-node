@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import MobileMenu from './MobileMenu';
 
 const Header = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -60,24 +61,8 @@ const Header = () => {
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex space-x-8">
-                        <Link to="/" className="text-gray-700 hover:text-primary transition">
-                            Home
-                        </Link>
-                        <Link to="/shop" className="text-gray-700 hover:text-primary transition">
-                            Shop
-                        </Link>
-                        <Link to="/about" className="text-gray-700 hover:text-primary transition">
-                            About Us
-                        </Link>
-                        <Link to="/contact" className="text-gray-700 hover:text-primary transition">
-                            Contact
-                        </Link>
-                    </nav>
-
                     {/* Search Bar - Desktop */}
-                    <div className="hidden md:flex items-center flex-1 max-w-md mx-4">
+                    <div className="hidden lg:flex items-center flex-1 max-w-md mx-4">
                         <form onSubmit={handleSearch} className="w-full flex">
                             <input
                                 type="text"
@@ -103,9 +88,25 @@ const Header = () => {
                         </form>
                     </div>
 
+                    {/* Desktop Navigation */}
+                    <nav className="hidden md:flex space-x-4 font-bold pl-2 text-sm">
+                        <Link to="/" className="text-gray-700 hover:text-primary transition">
+                            Home
+                        </Link>
+                        <Link to="/shop" className="text-gray-700 hover:text-primary transition">
+                            Shop
+                        </Link>
+                        <Link to="/about" className="text-gray-700 hover:text-primary transition">
+                            About Us
+                        </Link>
+                        <Link to="/contact" className="text-gray-700 hover:text-primary transition">
+                            Contact
+                        </Link>
+                    </nav>
+
                     {/* Icons - Desktop */}
-                    <div className="hidden md:flex items-center space-x-6">
-                        <Link to="/account" className="text-gray-700 hover:text-primary transition">
+                    <div className="hidden lg:flex items-center space-x-4 pl-5">
+                        <Link to="/login" className="text-gray-700 hover:text-primary transition">
                             {/* Account Icon */}
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -148,7 +149,7 @@ const Header = () => {
 
 
                     {/* Mobile Icons */}
-                    <div className="flex md:hidden items-center space-x-4">
+                    <div className="flex lg:hidden items-center space-x-4">
                         <button onClick={toggleSearch} className="text-gray-700">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +178,7 @@ const Header = () => {
                             </span>
                         </Link>
 
-                        <button onClick={toggleMobileMenu} className="text-gray-700">
+                        <button onClick={toggleMobileMenu} className="text-gray-700 md:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -196,7 +197,7 @@ const Header = () => {
 
                 {/* Mobile Search - Only visible when search icon is clicked */}
                 {showSearch && (
-                    <div className="md:hidden bg-white p-4 shadow-md">
+                    <div className="lg:hidden bg-white p-4 shadow-md">
                         <form onSubmit={handleSearch} className="w-full flex">
                             <input
                                 type="text"
@@ -225,78 +226,7 @@ const Header = () => {
 
                 {/* Mobile Menu - Only visible when menu icon is clicked */}
                 {showMobileMenu && (
-                    <div className="md:hidden bg-white p-4 shadow-md">
-                        <nav className="flex flex-col space-y-4">
-                            <Link
-                                to="/"
-                                className="text-gray-700 hover:text-primary transition"
-                                onClick={toggleMobileMenu}
-                            >
-                                Home
-                            </Link>
-                            <Link
-                                to="/shop"
-                                className="text-gray-700 hover:text-primary transition"
-                                onClick={toggleMobileMenu}
-                            >
-                                Shop
-                            </Link>
-                            <Link
-                                to="/about"
-                                className="text-gray-700 hover:text-primary transition"
-                                onClick={toggleMobileMenu}
-                            >
-                                About Us
-                            </Link>
-                            <Link
-                                to="/contact"
-                                className="text-gray-700 hover:text-primary transition"
-                                onClick={toggleMobileMenu}
-                            >
-                                Contact
-                            </Link>
-                            <div className="flex space-x-6 pt-4">
-                                <Link
-                                    to="/account"
-                                    className="text-gray-700 hover:text-primary transition"
-                                    onClick={toggleMobileMenu}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="20"
-                                        height="20"
-                                        fill="currentColor"
-                                        viewBox="0 0 16 16"
-                                    >
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                                        />
-                                    </svg>
-                                </Link>
-
-                                <Link
-                                    to="/wishlist"
-                                    className="text-gray-700 hover:text-primary transition"
-                                    onClick={toggleMobileMenu}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="20"
-                                        height="20"
-                                        fill="currentColor"
-                                        viewBox="0 0 16 16"
-                                    >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                                        />
-                                    </svg>
-                                </Link>
-                            </div>
-                        </nav>
-                    </div>
+                    <MobileMenu showMobileMenu={showMobileMenu} toggleMobileMenu={toggleMobileMenu} />
                 )}
             </div>
         </header>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LoginModal from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
+import Banner from '../components/Banner/banner';
 
 const Home = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -36,6 +37,7 @@ const Home = () => {
                 onClose={handleCloseSignup}
                 onSwitchToLogin={handleSwitchToLogin}
             />
+            <Banner />
         </div>
     );
 };

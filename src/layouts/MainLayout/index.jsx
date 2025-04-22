@@ -11,6 +11,8 @@ const MainLayout = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
 
+    const isAdmin = location.pathname.startsWith('/admin')
+
     const handleCloseLogin = () => {
         setShowLoginModal(false);
         navigate('/');
@@ -45,21 +47,24 @@ const MainLayout = () => {
 
     return (
         <>
-            <Header />
+            {!isAdmin && (<Header />)}
             <main style={{ minHeight: '80vh', padding: '1rem' }}>
                 <Outlet />
-                <LoginModal
-                    isOpen={showLoginModal}
-                    onClose={handleCloseLogin}
-                    onSwitchToSignup={handleSwitchToSignup}
-                />
-                <SignupModal
-                    isOpen={showSignupModal}
-                    onClose={handleCloseSignup}
-                    onSwitchToLogin={handleSwitchToLogin}
-                />
+                {!isAdmin && (
+                    <>
+                        <LoginModal
+                            isOpen={showLoginModal}
+                            onClose={handleCloseLogin}
+                            onSwitchToSignup={handleSwitchToSignup}
+                        />
+                        <SignupModal
+                            isOpen={showSignupModal}
+                            onClose={handleCloseSignup}
+                            onSwitchToLogin={handleSwitchToLogin}
+                        /></>
+                )}
             </main>
-            <Footer />
+            {!isAdmin && <Footer />}
         </>
     )
 }
